@@ -1,0 +1,22 @@
+{
+  "name": "res-api",
+  "version": "1.0.0",
+  "description": "express api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holyselina/res-api.git"
+  },
+  "keywords": [
+    "res api"
+  ],
+  "author": "Tjay",
+  "license": "ISC",
+  "homepage": "https://github.com/holyselina/res-api" ,
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
+}
