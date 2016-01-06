@@ -63,7 +63,7 @@ function fail(status,msg,data){
   var req = res.req;
   var len = arguments.length;
   if(len === 1){
-    if(_.isString(status) && mdw.status[status] == null){
+    if(_.isString(status)){
         msg = status;
         status = null;
     }else if(_.isObject(status)){
@@ -71,25 +71,22 @@ function fail(status,msg,data){
         status = null;
     }
   }else if(len === 2){
-    //first is data
-    if(_.isObject(status)){
-          data = status;
-          status = null;
-     }else if(_.isString(status) && mdw.status[status] == null){//first is msg
+    if(_.isString(status)){//msg,data
+        if(_.isObject(msg)){
+            data = msg;
+        }
         msg = status;
         status = null;
-    }
-    if(_.isObject(msg)){//sec is data
+    }else if(_.isObject(msg)){//status,(msg|data)
         data = msg;
         msg = null;
     }
   }
   data = data || {};
   msg = msg || data.message || 'fail';
-  if(_.isString(status) && mdw.status[status] != null){
-      status = mdw.status[status];
+  if(status == null){
+      status = mdw.status.fail;
   }
-  status = status || mdw.status.fail;
   send(req,res,msg,data,status);
   emitFail(req,data);
 }
